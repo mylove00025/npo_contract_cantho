@@ -1,0 +1,13 @@
+﻿var vForexs = new Array();
+var vCosts = new Array();
+vForexs[0]  = 'USD';  vCosts[0]  = '19.500';
+vForexs[1]  = 'GBP';  vCosts[1]  = '32.254';
+vForexs[2]  = 'HKD';  vCosts[2]  = '2.689';
+vForexs[3]  = 'CHF';  vCosts[3]  = '21.716';
+vForexs[4]  = 'JPY';  vCosts[4]  = '252.14';
+vForexs[5]  = 'AUD'; vCosts[5]  = '20.961';
+vForexs[6]  = 'CAD'; vCosts[6]  = '20.718';
+vForexs[7]  = 'SGD'; vCosts[7]  = '16.084';
+vForexs[8]  = 'EUR'; vCosts[8]  = '27.401';
+vForexs[9]  = 'NZD'; vCosts[9]  = '15.696';
+vForexs[10] = 'Bat Thái Lan'; vCosts[10] = '795';

@@ -1,0 +1,24 @@
+.tree_open {
+    display: inline-block;
+}
+
+.tree_close {
+    display: inline-block;
+}
+
+#jsddm li ul{
+    clear: left;
+    margin-top: 0px;
+}
+
+#jsddm {
+    margin-left: 0px;
+}
+
+#navigator {
+    position: relative;
+}
+
+form {
+    margin-top: 0px;
+}

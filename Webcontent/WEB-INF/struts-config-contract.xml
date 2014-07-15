@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="contractListForm" type="com.osp.npo.app.form.ContractListForm"/>
+        <form-bean name="temporaryContractListForm" type="com.osp.npo.app.form.TemporaryContractListForm"/>
+        <form-bean name="contractByUserListForm" type="com.osp.npo.app.form.ContractByUserListForm"/>
+        <form-bean name="contractByNotaryListForm" type="com.osp.npo.app.form.ContractByNotaryListForm" />
+        <form-bean name="contractByBankListForm" type="com.osp.npo.app.form.ContractByBankListForm" />
+        <form-bean name="contractForm" type="com.osp.npo.app.form.ContractForm"/>
+        <form-bean name="temporaryContractForm" type="com.osp.npo.app.form.TemporaryContractForm"/>
+        <form-bean name="contractStatisticForm" type="com.osp.npo.app.form.ContractStatisticForm"/>
+        <form-bean name="contractErrorListForm" type="com.osp.npo.app.form.ContractErrorListForm"/>
+        <form-bean name="contractCertifyForm" type="com.osp.npo.app.form.ContractCertifyForm"/>
+        <form-bean name="contractStatisticByKindForm" type="com.osp.npo.app.form.ContractStatisticByKindForm"/>
+        <form-bean name="propertyListForm" type="com.osp.npo.app.form.PropertyListForm"/>
+        <form-bean name="contractListByKindForm" type="com.osp.npo.app.form.ContractListByKindForm"/>
+        <form-bean name="contractAdditionForm" type="com.osp.npo.app.form.ContractAdditionForm"/>
+        <form-bean name="temporaryContractCommentForm" type="com.osp.npo.app.form.TemporaryContractCommentForm"/>
+        <form-bean name="relationForm" type="com.osp.npo.app.form.RelationForm"/>
+        <form-bean name="documentListForm" type="com.osp.npo.app.form.DocumentListForm"/>
+    </form-beans>
+
+    <action-mappings>
+        <action
+            path="/contractlistview"
+            name="contractListForm"
+            type="com.osp.npo.app.action.ContractListAction"
+            input="/jsp/contract/CNTR001.jsp" validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR001.jsp"/>
+        </action>
+        <action
+            path="/contractlistsearch"
+            name="contractListForm"
+            type="com.osp.npo.app.action.ContractListAction"
+            input="/jsp/contract/CNTR001.jsp" validate="true"
+            scope="request"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR001.jsp"/>
+        </action>
+        <action
+            path="/contractlistpaging"
+            name="contractListForm"
+            type="com.osp.npo.app.action.ContractListAction"
+            validate="false"
+            scope="request"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR001.jsp"/>
+            <forward name="failure" path="/contractlistback.do"/>
+        </action>
+        <action
+            path="/contractlistback"
+            name="contractListForm"
+            type="com.osp.npo.app.action.ContractListAction"
+            validate="false"
+            scope="request"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR001.jsp"/>
+        </action>
+        <action
+            path="/contractlistexport"
+            name="contractListForm"
+            type="com.osp.npo.app.action.ContractListAction"
+            input="/jsp/contract/CNTR001.jsp"
+            validate="true"
+            scope="request"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR001.jsp"/>
+        </action>
+        <!-- Temporary Contract -->
+        <action
+            path="/temporarycontractlistview"
+            name="temporaryContractListForm"
+            type="com.osp.npo.app.action.TemporaryContractListAction"
+            input="/jsp/contract/CNTR026.jsp" validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR026.jsp"/>
+        </action>
+        <action
+            path="/temporarycontractlistsearch"
+            name="temporaryContractListForm"
+            type="com.osp.npo.app.action.TemporaryContractListAction"
+            input="/jsp/contract/CNTR026.jsp" validate="true"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR026.jsp"/>
+        </action>
+        <action
+            path="/temporarycontractlistpaging"
+            name="temporaryContractListForm"
+            type="com.osp.npo.app.action.TemporaryContractListAction"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR026.jsp"/>
+        </action>
+        <action
+            path="/temporarycontractlistback"
+            name="temporaryContractListForm"
+            type="com.osp.npo.app.action.TemporaryContractListAction"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR026.jsp"/>
+        </action>
+        <action
+            path="/temporarycontractdetailview"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractDetailAction"
+            parameter="view"
+            validate="false">
+            <forward name="success" path="/jsp/contract/CNTR031.jsp"></forward>
+            <forward name="failure" path="/temporarycontractlistback.do"></forward>
+        </action>
+        
+        <action
+            path="/temporarycontractdetailremove"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractDetailAction"
+            parameter="remove"
+            validate="false">
+            <forward name="success" path="/temporarycontractlistback.do"></forward>
+            <forward name="failure" path="/temporarycontractlistview.do"></forward>
+        </action>
+        
+        <action
+            path="/temporarycontractdetaildownload"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractDetailAction"
+            parameter="download"
+            validate="false">
+            <forward name="success" path="/jsp/contract/CNTR031.jsp"></forward>
+            <forward name="failure" path="/jsp/contract/CNTR031.jsp"></forward>
+        </action>
+        
+        <action
+            path="/temporarycontractdetailtosign"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractDetailAction"
+            parameter="toSign"
+            validate="false">
+            <forward name="success" path="/contractregistviewfromtemp.do"></forward>
+            <forward name="failure" path="/jsp/contract/CNTR031.jsp"></forward>
+        </action>
+        
+        <action
+            path="/postcontractcomment"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractDetailAction"
+            parameter="postComment"
+            validate="false">
+            <forward name="success" path="/temporarycontractdetailview.do"></forward>
+            <forward name="failure" path="/temporarycontractdetailview.do"></forward>
+        </action>
+        
+        <action
+            path="/editcontractcommentview"
+            name="temporaryContractCommentForm"
+            type="com.osp.npo.app.action.TemporaryContractCommentAction"
+            parameter="view"
+            validate="false">
+            <forward name="success" path="/jsp/contract/CNTR032.jsp"></forward>
+            <forward name="failure" path="/jsp/contract/CNTR031.jsp"></forward>
+        </action>
+        
+        <action
+            path="/editcontractcommentpost"
+            name="temporaryContractCommentForm"
+            type="com.osp.npo.app.action.TemporaryContractCommentAction"
+            input="/jsp/contract/CNTR032.jsp"
+            parameter="editComment"
+            validate="true">
+            <forward name="success" path="/temporarycontractdetailview.do"></forward>
+            <forward name="failure" path="/jsp/contract/CNTR032.jsp"></forward>
+        </action>
+        
+        <action
+            path="/editcontractcommentdelete"
+            name="temporaryContractCommentForm"
+            type="com.osp.npo.app.action.TemporaryContractCommentAction"
+            parameter="delete"
+            validate="false">
+            <forward name="success" path="/temporarycontractdetailview.do"></forward>
+            <forward name="failure" path="/temporarycontractdetailview.do"></forward>
+        </action>
+        
+        <action
+            path="/editcontractcommentregist"
+            name="temporaryContractCommentForm"
+            type="com.osp.npo.app.action.TemporaryContractCommentAction"
+            input="/jsp/contract/CNTR031.jsp"
+            parameter="registComment"
+            validate="true">
+            <forward name="success" path="/temporarycontractdetailview.do"></forward>
+            <forward name="failure" path="/temporarycontractdetailview.do"></forward>
+        </action>
+        
+        <!-- Contract detail -->
+        <action
+            path="/contractdetailview"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractDetailAction"
+            parameter="view"
+            validate="false">
+            <forward name="success" path="/jsp/contract/CNTR018.jsp"></forward>
+            <forward name="failure" path="/contractlistback.do"></forward>
+            <forward name="failureprevent" path="/preventlistback.do"></forward>
+        </action>
+        <action
+            path="/downloadcontractdetail"
+            type="com.osp.npo.app.action.ContractDetailAction"
+            parameter="download">
+            <forward name="failure" path="/jsp/contract/CNTR018.jsp"></forward>
+        </action>
+        <action
+            path="/contractdetailremove"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractDetailAction"
+            scope="request"
+            validate="false"
+            parameter="remove">
+            <forward name="successcontract" path="/contractlistback.do"></forward>
+            <forward name="successprevent" path="/preventlistback.do"></forward>
+            <forward name="failure" path="/contractlistview.do"/>
+        </action>
+        <!-- Contract By User Management -->
+        <action
+            path="/contractbyuserlistview"
+            name="contractByUserListForm"
+            type="com.osp.npo.app.action.ContractByUserListAction"
+            input="/jsp/contract/CNTR007.jsp"
+            validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR007.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR007.jsp"/>
+        </action>
+        <action
+            path="/contractbyuserlistsearch"
+            name="contractByUserListForm"
+            type="com.osp.npo.app.action.ContractByUserListAction"
+            input="/jsp/contract/CNTR007.jsp"
+            validate="true"
+            scope="request"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR007.jsp"/>
+        </action>
+        <action
+            path="/contractbyuserlistpaging"
+            name="contractByUserListForm"
+            type="com.osp.npo.app.action.ContractByUserListAction"
+            input="/jsp/contract/CNTR007.jsp"
+            scope="request"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR007.jsp"/>
+        </action>
+
+        <action
+            path="/contractbyuserlistback"
+            name="contractByUserListForm"
+            type="com.osp.npo.app.action.ContractByUserListAction"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR007.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR007.jsp"/>
+        </action>
+        <action path="/contractbyuserlistexport"
+            name="contractByUserListForm"
+            type="com.osp.npo.app.action.ContractByUserListAction"
+            validate="false"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR007.jsp"/>
+        </action>
+       
+
+        <!-- Contract by notary -->
+        <action
+            path="/contractbynotaryview"
+            name="contractByNotaryListForm"
+            type="com.osp.npo.app.action.ContractByNotaryListAction"
+            input="/jsp/contract/CNTR005.jsp"
+            scope="request"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR005.jsp"/>
+        </action>
+        <action
+            path="/contractbynotarysearch"
+            name="contractByNotaryListForm"
+            type="com.osp.npo.app.action.ContractByNotaryListAction"
+            input="/jsp/contract/CNTR005.jsp"
+            scope="request"
+            validate="true"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR005.jsp"/>
+        </action>
+        <action
+            path="/contractbynotarypaging"
+            name="contractByNotaryListForm"
+            type="com.osp.npo.app.action.ContractByNotaryListAction"
+            input="/jsp/contract/CNTR005.jsp"
+            scope="request"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR005.jsp"/>
+        </action>
+        <action
+            path="/contractbynotaryreport"
+            name="contractByNotaryListForm"
+            type="com.osp.npo.app.action.ContractByNotaryListAction"
+            scope="request"
+            validate="false"
+            parameter="report">
+            <forward name="success" path="/jsp/contract/CNTR005.jsp"/>
+        </action>
+         <action path="/userlistexport"
+            name="contractByNotaryListForm"
+            type="com.osp.npo.app.action.ContractByNotaryListAction"
+            scope="request"
+            validate="false"
+            parameter="exportUserExcel">
+            <forward name="success" path="/jsp/contract/CNTR005.jsp"/>
+        </action>
+        <action
+            path="/contractbynotaryback"
+            name="contractByNotaryListForm"
+            type="com.osp.npo.app.action.ContractByNotaryListAction"
+            scope="request"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR005.jsp"/>
+        </action>
+
+        <!-- Contract by bank -->
+        <action
+            path="/contractbybankview"
+            name="contractByBankListForm"
+            type="com.osp.npo.app.action.ContractByBankListAction"
+            scope="request"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR009.jsp"/>
+        </action>
+        <action
+            path="/contractbybanksearch"
+            name="contractByBankListForm"
+            type="com.osp.npo.app.action.ContractByBankListAction"
+            scope="request"
+            input="/jsp/contract/CNTR009.jsp"
+            validate="true"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR009.jsp"/>
+        </action>
+        <action
+            path="/contractbybankpaging"
+            name="contractByBankListForm"
+            type="com.osp.npo.app.action.ContractByBankListAction"
+            scope="request"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR009.jsp"/>
+        </action>
+        <action
+            path="/contractbybankreport"
+            name="contractByBankListForm"
+            type="com.osp.npo.app.action.ContractByBankListAction"
+            scope="request"
+            validate="false"
+            parameter="report">
+            <forward name="success" path="/jsp/contract/CNTR009.jsp"/>
+        </action>
+        <action
+            path="/contractbybankback"
+            name="contractByBankListForm"
+            type="com.osp.npo.app.action.ContractByBankListAction"
+            scope="request"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR009.jsp"/>
+        </action>
+
+        <!-- Contract List By Kind -->
+        <action
+            path="/contractlistbykindview"
+            name="contractListByKindForm"
+            type="com.osp.npo.app.action.ContractListByKindAction"
+            input="/jsp/contract/CNTR024.jsp" validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR024.jsp"/>
+        </action>
+        <action
+            path="/contractlistbykindsearch"
+            name="contractListByKindForm"
+            type="com.osp.npo.app.action.ContractListByKindAction"
+            input="/jsp/contract/CNTR024.jsp" validate="true"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR024.jsp"/>
+        </action>
+        <action
+            path="/contractlistbykindpaging"
+            name="contractListByKindForm"
+            type="com.osp.npo.app.action.ContractListByKindAction"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR024.jsp"/>
+        </action>
+        <action
+            path="/contractlistbykindback"
+            name="contractListByKindForm"
+            type="com.osp.npo.app.action.ContractListByKindAction"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR024.jsp"/>
+        </action>
+
+        <action
+            path="/contractlistbykindexport"
+            name="contractListByKindForm"
+            type="com.osp.npo.app.action.ContractListByKindAction"
+            input="/jsp/contract/CNTR024.jsp"
+            validate="false"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR024.jsp"/>
+        </action>
+        <!-- Ajax action -->
+        <action
+            path="/ajaxGetContractKindChildren"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="getContractKindChildren">
+        </action>
+        
+        <action
+        	name="relationForm"
+            path="/ajaxsearchRelation"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="searchRelation">
+             <forward name="success" path="/jsp/contract/relation_list.jsp"/>
+        </action> 
+        <action
+        	
+            path="/ajaxCheckContractNumber"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="checkContractNumber">
+        </action>
+        
+        
+        <action
+            path="/ajaxGetContractTemplates"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="getContractTemplates">
+        </action>
+
+        <action
+            path="/ajaxCalculateTotalCost"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="calculateTotalCost">
+        </action>
+
+        <action
+            path="/ajaxGetContractKindTreeNode"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="getContractKindTreeNode">
+        </action>
+
+        <action
+            path="/ajaxGetDistrict"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="getDistrict">
+        </action>
+
+        <action
+            path="/ajaxshowproperties"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="showProperties">
+            <forward name="success" path="/jsp/contract/properties.jsp"/>
+        </action>
+
+        <action
+            path="/ajaxshowpropertypopup"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="showPropertyPopup">
+            <forward name="success" path="/jsp/contract/propertypopup.jsp"/>
+        </action>
+
+        <action
+            path="/ajaxshowproperty"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="showProperty">
+            <forward name="success" path="/jsp/contract/property.jsp"/>
+        </action>
+
+        <action
+            path="/ajaxshowpropertydetail"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="showPropertyDetail">
+            <forward name="success" path="/jsp/contract/property_detail.jsp"/>
+        </action>
+        <action
+            path="/ajaxshowtemppropertydetail"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="showTempPropertyDetail">
+            <forward name="success" path="/jsp/contract/temporary_detail.jsp"/>
+        </action>
+        <action
+            path="/ajaxsearchproperty"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="searchProperty">
+        </action>
+        
+         <action
+            path="/ajaxissuecontractnumber"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="issueContractNumber">
+        </action>
+        
+         <action
+            path="/ajaxchecklostnumber"
+            type="com.osp.npo.app.action.AjaxAction" scope="request" parameter="checkLostNumber">
+        </action>
+        
+        
+         <!-- TemporaryContract Regist -->
+        <action
+            path="/temporarycontractregistview"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractRegistAction"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR029.jsp"/>
+        </action>
+        
+         <action
+            path="/temporarycontractregist"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractRegistAction"
+            scope="request"
+            input="/jsp/contract/CNTR029.jsp"
+            validate="true"
+            parameter="regist">
+            <forward name="success" path="/temporarycontractdetailview.do"/>
+            <forward name="failure" path="/jsp/contract/CNTR029.jsp"/>
+            <forward name="deleted" path="/temporarycontractlistview.do"/>
+        </action>
+        
+        <action
+            path="/temporarycontractcreatecopy"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractRegistAction"
+            validate="false"
+            parameter="viewForCreateCopy">
+           <forward name="success" path="/jsp/contract/CNTR029.jsp"/>
+            <forward name="failure" path="/temporarycontractlistview.do"/>
+        </action>
+        
+        <!-- TemporaryContract Edit -->
+        <action
+            path="/temporarycontractupdateview"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractUpdateAction"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR030.jsp"/>
+            <forward name="failure" path="/temporarycontractlistview.do"/>
+        </action>
+        
+         <action
+            path="/temporarycontractupdate"
+            name="temporaryContractForm"
+            type="com.osp.npo.app.action.TemporaryContractUpdateAction"
+            scope="request"
+            input="/jsp/contract/CNTR030.jsp"
+            validate="true"
+            parameter="modify">
+            <forward name="success" path="/temporarycontractdetailview.do"/>
+            <forward name="failure" path="/jsp/contract/CNTR030.jsp"/>
+            <forward name="deleted" path="/temporarycontractlistview.do"/>
+        </action>
+        
+
+        <!-- Contract Regist -->
+        <action
+            path="/contractregistview"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR003.jsp"/>
+        </action>
+        
+        <action
+            path="/contractregistviewfromtemp"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            validate="false"
+            parameter="viewFromTempo">
+            <forward name="success" path="/jsp/contract/CNTR003.jsp"/>
+             <forward name="failure" path="/temporarycontractdetailview.do"/>
+        </action>
+
+        <action
+            path="/contractregistforcancellation"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            validate="false"
+            parameter="viewForCancellation">
+            <forward name="success" path="/jsp/contract/CNTR003.jsp"/>
+            <forward name="failure" path="/contractlistview.do"/>
+        </action>
+        
+        <action
+            path="/contractcreateappendix"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            validate="false"
+            parameter="viewForCreateAppendix">
+            <forward name="success" path="/jsp/contract/CNTR003.jsp"/>
+            <forward name="failure" path="/contractlistview.do"/>
+        </action>
+
+   		<action
+            path="/contractcreatecopy"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            validate="false"
+            parameter="viewForCreateCopy">
+           <forward name="success" path="/jsp/contract/CNTR003.jsp"/>
+            <forward name="failure" path="/contractlistview.do"/>
+        </action>
+        
+        <action
+            path="/contractregist"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            scope="request"
+            input="/jsp/contract/CNTR003.jsp"
+            validate="true"
+            parameter="regist">
+            <forward name="success" path="/contractdetailview.do"/>
+            <forward name="failure" path="/jsp/contract/CNTR003.jsp"/>
+            <forward name="deleted" path="/contractlistview.do"/>
+        </action>
+
+        <action
+            path="/downloadcontractdraft"
+            input="/jsp/contract/CNTR003.jsp"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            scope="request"
+            validate="true"
+            parameter="exportDraft">
+            <forward name="failure" path="/jsp/contract/CNTR003.jsp"></forward>
+            <forward name="generatefail" path="/jsp/contract/CNTR003.jsp"></forward>
+            <forward name="deleted" path="/contractlistview.do"/>
+        </action>
+
+        <action
+            path="/contractregistback"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            scope="request"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR003.jsp"/>
+        </action>
+
+        <action
+            path="/addpropertyregist"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            scope="request"
+            validate="false"
+            parameter="addProperty">
+            <forward name="success" path="/propertylistview.do"/>
+        </action>
+
+        <action
+            path="/editpropertyregist"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            scope="request"
+            validate="false"
+            parameter="editProperty">
+            <forward name="success" path="/jsp/contract/CNTR003.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR003.jsp"/>
+        </action>
+
+        <!-- Contract Update -->
+        <action
+            path="/contractupdateview"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractUpdateAction"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR004.jsp"/>
+            <forward name="failure" path="/contractlistview.do"/>
+        </action>
+
+        <action
+            path="/contractupdate"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractUpdateAction"
+            scope="request"
+            input="/jsp/contract/CNTR004.jsp"
+            validate="true"
+            parameter="update">
+            <forward name="success" path="/contractdetailview.do"/>
+            <forward name="failure" path="/jsp/contract/CNTR004.jsp"/>
+            <forward name="deleted" path="/contractlistview.do"/>
+        </action>
+
+        <action
+            path="/contractupdateback"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractUpdateAction"
+            scope="request"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR004.jsp"/>
+        </action>
+
+        <action
+            path="/downloadcontractfile"
+            type="com.osp.npo.app.action.ContractUpdateAction"
+            parameter="download">
+            <forward name="failure" path="/jsp/contract/CNTR004.jsp"></forward>
+        </action>
+
+        <action
+            path="/contractremove"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractUpdateAction"
+            scope="request"
+            validate="false"
+            parameter="remove">
+            <forward name="failure" path="/jsp/contract/CNTR004.jsp"/>
+            <forward name="success" path="/contractlistback.do"/>
+        </action>
+
+        <action
+            path="/addpropertyupdate"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractUpdateAction"
+            scope="request"
+            validate="false"
+            parameter="addProperty">
+            <forward name="success" path="/propertylistview.do"/>
+        </action>
+
+        <action
+            path="/editpropertyupdate"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractUpdateAction"
+            scope="request"
+            validate="false"
+            parameter="editProperty">
+            <forward name="success" path="/jsp/contract/CNTR004.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR004.jsp"/>
+        </action>
+
+        <!-- Contract Statistic -->
+        <action
+            path="/contractstatisticview"
+            name="contractStatisticForm"
+            type="com.osp.npo.app.action.ContractStatisticAction"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR011.jsp"/>
+        </action>
+
+        <action
+            path="/contractstatisticdone"
+            name="contractStatisticForm"
+            type="com.osp.npo.app.action.ContractStatisticAction"
+            input="/jsp/contract/CNTR011.jsp"
+            validate="true"
+            parameter="statistics">
+            <forward name="success" path="/jsp/contract/CNTR011.jsp"/>
+        </action>
+
+        <action
+            path="/contractstatisticexport"
+            name="contractStatisticForm"
+            type="com.osp.npo.app.action.ContractStatisticAction"
+            validate="false"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR011.jsp"/>
+        </action>
+
+        <!-- Contract Error List -->
+        <action
+            path="/contracterrorlistview"
+            name="contractErrorListForm"
+            type="com.osp.npo.app.action.ContractErrorListAction"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR016.jsp"/>
+        </action>
+        <action
+            path="/contracterrorlistsearch"
+            name="contractErrorListForm"
+            type="com.osp.npo.app.action.ContractErrorListAction"
+            input="/jsp/contract/CNTR016.jsp"
+            validate="true"
+            scope="request"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR016.jsp"/>
+        </action>
+        <action
+            path="/contracterrorlistpaging"
+            name="contractErrorListForm"
+            type="com.osp.npo.app.action.ContractErrorListAction"
+            input="/jsp/contract/CNTR016.jsp"
+            scope="request"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR016.jsp"/>
+        </action>
+        <action
+            path="/contracterrorexport"
+            name="contractErrorListForm"
+            type="com.osp.npo.app.action.ContractErrorListAction"
+            input="/jsp/contract/CNTR016.jsp"
+            validate="false"
+            scope="request"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR016.jsp"/>
+        </action>
+
+        <!-- Contract Certify -->
+        <action
+            path="/printnotarybookview"
+            name="contractCertifyForm"
+            type="com.osp.npo.app.action.ContractCertifyAction"
+            input="/jsp/contract/CNTR021.jsp"
+            validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR021.jsp"/>
+           
+        </action>
+        <action path="/printnotarybookexport"
+            name="contractCertifyForm"
+            scope="request"
+            type="com.osp.npo.app.action.ContractCertifyAction"
+            validate="true"
+            input="/jsp/contract/CNTR021.jsp"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR021.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR021.jsp"/>
+        </action>
+        <!-- Contract Addition -->
+        <action
+            path="/contractadditionview"
+            name="contractAdditionForm"
+            type="com.osp.npo.app.action.ContractAdditionAction"
+            input="/jsp/contract/CNTR028.jsp"
+            validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR028.jsp"/>
+        </action>
+        <action
+            path="/contractadditionsearch"
+            name="contractAdditionForm"
+            type="com.osp.npo.app.action.ContractAdditionAction"
+            input="/jsp/contract/CNTR028.jsp"
+            validate="true"
+            scope="request"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR028.jsp"/>
+        </action>
+        <action
+            path="/contractadditionpaging"
+            name="contractAdditionForm"
+            type="com.osp.npo.app.action.ContractAdditionAction"
+            input="/jsp/contract/CNTR028.jsp"
+            scope="request"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR028.jsp"/>
+        </action>
+
+        <action
+            path="/contractadditionback"
+            name="contractAdditionForm"
+            type="com.osp.npo.app.action.ContractAdditionAction"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR028.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR028.jsp"/>
+        </action>
+        <action path="/contractadditionexport"
+            name="contractAdditionForm"
+            scope="request"
+            type="com.osp.npo.app.action.ContractAdditionAction"
+            validate="true"
+            input="/jsp/contract/CNTR028.jsp"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR028.jsp"/>
+        </action>
+        <!-- Contract Statistic By Kind -->
+        <action
+            path="/contractstatisticbykindview"
+            name="contractStatisticByKindForm"
+            type="com.osp.npo.app.action.ContractStatisticByKindAction"
+            scope="request"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR019.jsp"/>
+        </action>
+
+        <action
+            path="/contractstatisticbykinddone"
+            name="contractStatisticByKindForm"
+            type="com.osp.npo.app.action.ContractStatisticByKindAction"
+            scope="request"
+            input="/jsp/contract/CNTR019.jsp"
+            validate="true"
+            parameter="statistics">
+            <forward name="success" path="/jsp/contract/CNTR019.jsp"/>
+        </action>
+
+        <action
+            path="/contractstatisticbykindexport"
+            name="contractStatisticByKindForm"
+            type="com.osp.npo.app.action.ContractStatisticByKindAction"
+            scope="request"
+            validate="false"
+            parameter="exportExcel">
+            <forward name="success" path="/jsp/contract/CNTR019.jsp"/>
+        </action>
+
+         <action
+            path="/propertylistview"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            input="/jsp/contract/CNTR023.jsp"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+
+        <action
+            path="/propertylistsearch"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            input="/jsp/contract/CNTR023.jsp"
+            validate="false"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+
+        <action
+            path="/listpropertypaging"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            validate="false"
+            parameter="paging">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+
+        <action
+            path="/addpropertydetailnew"
+            name="contractForm"
+            type="com.osp.npo.app.action.ContractRegistAction"
+            scope="request"
+            input="/jsp/contract/CNTR023.jsp"
+            validate="false"
+            parameter="addProperty">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+
+       <action
+            path="/propertylistsave"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            input="/jsp/contract/CNTR023.jsp"
+            validate="false"
+            parameter="savePropertyList">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+
+         <action
+            path="/removepropertylist"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            input="/jsp/contract/CNTR023.jsp"
+            validate="false"
+            parameter="removePropertyList">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+
+        <action
+            path="/propertylistback"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            scope="request"
+            validate="false"
+            parameter="back" >
+            <forward name="regist" path="/contractregistback.do"/>
+            <forward name="update" path="/contractupdateback.do"/>
+        </action>
+
+       <action
+            path="/addnewpropertylist"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            input="/jsp/contract/CNTR023.jsp"
+            validate="true"
+            parameter="addProperty">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+
+
+        <action
+            path="/editpropertylist"
+            name="propertyListForm"
+            type="com.osp.npo.app.action.PropertyListAction"
+            input="/jsp/contract/CNTR023.jsp"
+            validate="false"
+            parameter="editProperty">
+            <forward name="success" path="/jsp/contract/CNTR023.jsp"/>
+        </action>
+        
+        <!-- document -->
+
+        <action
+            path="/documentlistview"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+        
+          <action
+            path="/documentcontent"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="documentContent">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+        
+         <action
+            path="/uptofatherfolder"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="upFolder">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+             <forward name="failure" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+        
+        
+         <action
+            path="/documentdownload"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="downloadDocument">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+             <forward name="failure" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+        
+        <action
+            path="/uploaddocument"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="uploadDocumentView">
+            <forward name="success" path="/jsp/contract/CNTR035.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+        
+        <action
+            path="/uploaddocumentsave"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="uploadDocument">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR035.jsp"/>
+        </action>
+       
+        <action
+            path="/makenewfolder"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="makeNewFolder">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+         <action
+            path="/deldocument"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="delDocument">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+        
+        <action
+            path="/editdocument"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="editDocument">
+            <forward name="success" path="/jsp/contract/CNTR034.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR033.jsp"/>
+        </action>
+        
+        <action
+            path="/editdocumentsave"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="saveEditDocument">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR034.jsp"/>
+        </action>
+        
+        <action
+            path="/searchdocument"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="search">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR034.jsp"/>
+        </action>
+        
+         <action
+            path="/uploaddocumentlistback"
+            name="documentListForm"
+            type="com.osp.npo.app.action.DocumentListAction"
+            validate="false"
+            parameter="back">
+            <forward name="success" path="/jsp/contract/CNTR033.jsp"/>
+            <forward name="failure" path="/jsp/contract/CNTR034.jsp"/>
+        </action>
+
+    </action-mappings>
+</struts-config>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="OSP-NPO" basedir="../" default="all">
+
+  <property name="TOMCAT_HOME" value="E:\Dev\uchi\apache-tomcat-6.0.29" />
+  <property name="webroot" value="./WebContent" />
+  <property name="classes" value="${webroot}/WEB-INF/classes" />
+  <property name="lib" value="${webroot}/WEB-INF/lib" />
+  <property name="servlet-api.jar" value="${TOMCAT_HOME}/lib/servlet-api.jar" />
+  <property name="jsp-api.jar" value="${TOMCAT_HOME}/lib/jsp-api.jar" />
+  <property name="jasper.jar" value="${TOMCAT_HOME}/lib/jasper.jar" />
+  <property name="jacob.jar" value="${TOMCAT_HOME}/lib/jacob.jar" />
+  <property name="ENCODING" value="UTF-8" />
+
+  <target name="all" depends="prepare,compile" />
+
+  <!-- OSP-NPO Compile -->
+  <target name="compile">
+    <javac destdir="${classes}" encoding="${ENCODING}" debug="false">
+      <src>
+        <pathelement path="./javaSource" />
+      	<pathelement path="./wsclient" />
+      	<pathelement path="./admin" />
+      	<pathelement path="./login" />
+      	<pathelement path="./contract" />
+      	<pathelement path="./common" />      	
+        <pathelement path="./prevent" />
+        <pathelement path="./announcement" />
+        <pathelement path="./diagnostic" />
+      	
+      </src>
+      <classpath>
+        <fileset dir="./WebContent/WEB-INF/lib">
+          <include name="*.jar" />
+          <include name="${servlet-api.jar}" />
+          <include name="${jsp-api.jar}" />
+          <include name="${jasper.jar}" />
+          <include name="${jacob.jar}" />
+        </fileset>
+        <pathelement location="${TOMCAT_HOME}/lib/servlet-api.jar" />
+        <pathelement location="${TOMCAT_HOME}/lib/jsp-api.jar" />
+        <pathelement location="${TOMCAT_HOME}/lib/jasper.jar" />
+        <pathelement location="${TOMCAT_HOME}/lib/jacob.jar" />
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="prepare">
+    <delete dir="${classes}" />
+    <delete dir="${resources}" />
+    <mkdir dir="${classes}" />
+    <mkdir dir="${classes}/resources" />
+    <copy todir="${classes}" includeEmptyDirs="no" failonerror="false">
+      <fileset dir="./javaSource">
+        <patternset>
+          <include name="*.xml" />
+        </patternset>
+      </fileset>
+    </copy>
+    <copy todir="${classes}/resources" includeEmptyDirs="no" failonerror="false">
+      <fileset dir="./javaSource/resources">
+        <patternset>
+          <include name="*.properties" />
+        </patternset>
+      </fileset>
+    </copy>
+  </target>
+</project>

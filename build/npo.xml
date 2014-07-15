@@ -1,0 +1,18 @@
+<Context path="/contract" reloadable="true" docBase="D:\ForDEV\VPCC\Workspace\npo_contract\Webcontent\"
+workDir="D:\ForDEV\VPCC\Workspace\npo_contract\work" >
+
+	<Resource auth="Container"
+		name="jdbc/datasource" 
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver"
+		username="npo" 
+		password="123456"
+		url="jdbc:mysql://192.168.1.208:3306/npo_contract" 
+        maxIdle="1" 
+        maxWait="10000" 
+        maxActive="10"
+        removeAbandoned="true" 
+        removeAbandonedTimeout="60"
+        validationQuery="/* ping */"
+        testWhileIdle="true"/>
+</Context>

@@ -1,0 +1,98 @@
+
+BODY
+{
+	width:100%;
+	margin:0;
+	padding:0;
+	background:#FFFFFF url(../image/wraper_back_ground.png);
+	background-repeat:repeat;
+	font-family: Tahoma;
+	font-size: 9pt;
+}
+
+#content
+{
+	width:100%;
+	height:auto;
+	padding-top:80px;
+}
+
+#center_div
+{
+    background:url(../image/login_background.gif);
+	background-repeat:no-repeat;
+	width:500px;
+	height:200px;   
+	padding-top: 220px;
+}
+
+#login_box
+{
+	height: 158px;
+	margin-top: -12px;
+	margin-bottom: 12px;
+}
+
+#input_form
+{
+    float:left;
+	padding-left: 30px;
+	padding-top: 20px;
+}
+
+.td_input_form_left
+{
+	width: 30px;
+}
+
+.td_input_form_right
+{
+	height: 24px; 
+	text-indent: 5px;
+}
+
+.txt_user_name 
+{
+	border: 1px solid #FFA737;
+	width: 190px;
+}
+
+.txt_password
+{
+	border: 1px solid #FFFFFF; 
+	width: 190px;
+}
+
+#btnLogin
+{
+	border-width: 0px;
+}
+
+#osp_logo
+{
+    float:left;
+    padding-left:35px;
+}
+
+.copy_right
+{
+	color: #C3C3C3;
+	font-size: 8pt;
+}
+
+.copy_right_osp
+{
+	color: #40A1FE;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+a 
+{
+	text-decoration:none;
+}
+
+img
+{
+	border: 0px;
+}

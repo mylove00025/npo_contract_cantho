@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="userListForm" type="com.osp.npo.app.form.UserListForm"></form-bean>
+        <form-bean name="userEntryForm" type="com.osp.npo.app.form.UserEntryForm"></form-bean>
+        <form-bean name="userEditForm" type="com.osp.npo.app.form.UserEditForm"></form-bean>
+        <form-bean name="contractKindListForm" type="com.osp.npo.app.form.ContractKindListForm"></form-bean>
+        <form-bean name="contractKindForm" type="com.osp.npo.app.form.ContractKindForm"></form-bean>
+        <form-bean name="bankForm" type="com.osp.npo.app.form.BankForm"></form-bean>
+        <form-bean name="bankListForm" type="com.osp.npo.app.form.BankListForm"></form-bean>
+        <form-bean name="contractTemplateListForm" type="com.osp.npo.app.form.ContractTemplateListForm"/>
+        <form-bean name="contractTemplateRegistForm" type="com.osp.npo.app.form.ContractTemplateRegistForm"/>
+        <form-bean name="contractTemplateEditForm" type="com.osp.npo.app.form.ContractTemplateEditForm"/>
+        <form-bean name="systemConfigForm" type="com.osp.npo.app.form.SystemConfigForm"/>
+        <form-bean name="contractHistoryListForm" type="com.osp.npo.app.form.ContractHistoryListForm"></form-bean>
+        <form-bean name="contractHistoryDetailForm" type="com.osp.npo.app.form.ContractHistoryDetailForm"></form-bean>
+        <form-bean name="accessHistoryForm" type="com.osp.npo.app.form.AccessHistoryForm"></form-bean>
+    </form-beans>
+
+    <action-mappings>
+        <action path="/userlistview" type="com.osp.npo.app.action.UserListAction"
+            name="userListForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM001.jsp"></forward>
+        </action>
+
+        <action path="/userlistsearch" type="com.osp.npo.app.action.UserListAction"
+            name="userListForm"
+            parameter="search"
+            scope="request"
+            input="/jsp/admin/ADM001.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM001.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM001.jsp"></forward>
+        </action>
+
+        <action path="/userlistpage" type="com.osp.npo.app.action.UserListAction"
+            name="userListForm"
+            parameter="page"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM001.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM001.jsp"></forward>
+        </action>
+
+        <action path="/userlistback" type="com.osp.npo.app.action.UserListAction"
+            name="userListForm"
+            parameter="back"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM001.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM001.jsp"></forward>
+        </action>
+
+        <action path="/addnewuser" type="com.osp.npo.app.action.UserEntryAction"
+            name="userEntryForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM002.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM002.jsp"></forward>
+        </action>
+
+        <action path="/savenewuser" type="com.osp.npo.app.action.UserEntryAction"
+            name="userEntryForm"
+            parameter="save"
+            scope="request"
+            input="/jsp/admin/ADM002.jsp"
+            validate="true">
+            <forward name="success" path="/addnewuser.do"></forward>
+            <forward name="failure" path="/jsp/admin/ADM002.jsp"></forward>
+        </action>
+
+        <action path="/userlistselect" type="com.osp.npo.app.action.UserListAction"
+            name="userListForm"
+            parameter="select"
+            scope="request"
+            input="/jsp/admin/ADM001.jsp"
+            validate="false">
+            <forward name="success" path="/edituserview.do"></forward>
+            <forward name="failure" path="/userlistpage.do"></forward>
+        </action>
+
+        <action path="/edituserview" type="com.osp.npo.app.action.UserEditAction"
+            name="userEditForm"
+            parameter="view"
+            scope="request"
+            input="/jsp/admin/ADM003.jsp"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM003.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM003.jsp"></forward>
+        </action>
+
+        <action path="/editusersave" type="com.osp.npo.app.action.UserEditAction"
+            name="userEditForm"
+            parameter="save"
+            scope="request"
+            input="/jsp/admin/ADM003.jsp"
+            validate="true">
+            <forward name="success" path="/edituserview.do"></forward>
+            <forward name="failure" path="/jsp/admin/ADM003.jsp"></forward>
+        </action>
+
+        <action path="/edituserdel" type="com.osp.npo.app.action.UserEditAction"
+            name="userEditForm"
+            parameter="del"
+            scope="request"
+            input="/jsp/admin/ADM003.jsp"
+            validate="false">
+            <forward name="success" path="/userlistback.do"></forward>
+            <forward name="failure" path="/jsp/admin/ADM003.jsp"></forward>
+        </action>
+		<!-- Contract history  -->
+		<action path="/contractHistorylistview" type="com.osp.npo.app.action.ContractHistoryListAction"
+            name="contractHistoryListForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM019.jsp"></forward>
+        </action>
+
+        <action path="/contractHistoryListsearch" type="com.osp.npo.app.action.ContractHistoryListAction"
+            name="contractHistoryListForm"
+            parameter="search"
+            scope="request"
+            input="/jsp/admin/ADM019.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM019.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM019.jsp"></forward>
+        </action>
+
+        <action path="/contractHistoryListpage" type="com.osp.npo.app.action.ContractHistoryListAction"
+            name="contractHistoryListForm"
+            parameter="page"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM019.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM019.jsp"></forward>
+        </action>
+
+        <action path="/contractHistorylistback" type="com.osp.npo.app.action.ContractHistoryListAction"
+            name="contractHistoryListForm"
+            parameter="back"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM019.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM019.jsp"></forward>
+        </action>
+        
+        <action
+            path="/contractHistoryListselect"
+            name="contractHistoryDetailForm"
+            type="com.osp.npo.app.action.ContractHistoryDetailAction"
+            parameter="view"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM020.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM019.jsp"></forward>
+        </action>
+        
+        <!-- Contract Kind Regist-->
+        <action path="/contractkindregistview"
+            type="com.osp.npo.app.action.ContractKindRegistAction"
+            name="contractKindForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM005.jsp"></forward>
+        </action>
+
+        <action path="/contractkindregist"
+            type="com.osp.npo.app.action.ContractKindRegistAction"
+            name="contractKindForm"
+            parameter="regist"
+            scope="request"
+            input="/jsp/admin/ADM005.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM005.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM005.jsp"></forward>
+        </action>
+
+        <!-- Contract Kind Update-->
+        <action path="/contractkindupdateview"
+            type="com.osp.npo.app.action.ContractKindUpdateAction"
+            name="contractKindForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM006.jsp"></forward>
+            <forward name="failure" path="/contractkindlistview.do"></forward>
+        </action>
+
+        <action path="/contractkindupdate"
+            type="com.osp.npo.app.action.ContractKindUpdateAction"
+            name="contractKindForm"
+            parameter="update"
+            scope="request"
+            input="/jsp/admin/ADM006.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM006.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM006.jsp"></forward>
+        </action>
+
+        <action path="/contractkindremove"
+            type="com.osp.npo.app.action.ContractKindUpdateAction"
+            name="contractKindForm"
+            parameter="remove"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/contractkindlistview.do"></forward>
+            <forward name="failure" path="/jsp/admin/ADM006.jsp"></forward>
+        </action>
+
+        <!-- List contract kind -->
+        <action
+            path="/contractkindlistview"
+            type="com.osp.npo.app.action.ContractKindListAction"
+            name="contractKindListForm"
+            validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/admin/ADM004.jsp"/>
+        </action>
+
+        <!-- Danh sach nhom hop dong -->
+         <action path="/contractkindlistpage"
+           type="com.osp.npo.app.action.ContractKindListAction"
+            name="contractKindListForm"
+            parameter="page"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM004.jsp"></forward>
+        </action>
+
+        <!-- Tim kiem nhom hop dong -->
+        <action path="/contractkindlistsearch"
+          type="com.osp.npo.app.action.ContractKindListAction"
+            name="contractKindListForm"
+            parameter="search"
+            scope="request"
+            input="/jsp/admin/ADM004.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM004.jsp"></forward>
+        </action>
+
+       <action path="/contractkindlistback"
+           type="com.osp.npo.app.action.ContractKindListAction"
+            name="contractKindListForm"
+            parameter="back"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM004.jsp"></forward>
+        </action>
+
+        <!-- List Bank -->
+        <action path="/banklistview"
+            type="com.osp.npo.app.action.BankListAction"
+            name="bankListForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM007.jsp"></forward>
+        </action>
+
+          <action path="/banklistsearch" type="com.osp.npo.app.action.BankListAction"
+            name="bankListForm"
+            parameter="search"
+            scope="request"
+            input="/jsp/admin/ADM007.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM007.jsp"></forward>
+        </action>
+
+         <action path="/banklistpage" type="com.osp.npo.app.action.BankListAction"
+            name="bankListForm"
+            parameter="page"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM007.jsp"></forward>
+        </action>
+
+        <!-- Bank Regist-->
+        <action path="/bankregistview"
+            type="com.osp.npo.app.action.BankRegistAction"
+            name="bankForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM008.jsp"></forward>
+        </action>
+
+        <action path="/bankregist"
+            type="com.osp.npo.app.action.BankRegistAction"
+            name="bankForm"
+            parameter="regist"
+            scope="request"
+            input="/jsp/admin/ADM008.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM008.jsp"></forward>
+        </action>
+
+         <action path="/banklistback" type="com.osp.npo.app.action.BankListAction"
+            name="bankListForm"
+            parameter="back"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM007.jsp"></forward>
+        </action>
+
+        <!-- Bank Update-->
+        <action path="/bankupdateview"
+            type="com.osp.npo.app.action.BankUpdateAction"
+            name="bankForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/admin/ADM009.jsp"></forward>
+            <forward name="failure" path="/banklistback.do"></forward>
+        </action>
+
+        <action path="/bankupdate"
+            type="com.osp.npo.app.action.BankUpdateAction"
+            name="bankForm"
+            parameter="update"
+            scope="request"
+            input="/jsp/admin/ADM009.jsp"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM009.jsp"></forward>
+            <forward name="failure" path="/jsp/admin/ADM009.jsp"></forward>
+        </action>
+
+        <action path="/bankremove"
+            type="com.osp.npo.app.action.BankUpdateAction"
+            name="bankForm"
+            parameter="remove"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/banklistback.do"></forward>
+            <forward name="failure" path="/jsp/admin/ADM009.jsp"></forward>
+        </action>
+
+ 		<!-- Bank Order -->
+ 		
+ 		 <action path="/orderbankbyname"
+            type="com.osp.npo.app.action.BankListAction"
+            name="bankListForm"
+            parameter="orderByName"
+            scope="request"
+            validate="true">
+            <forward name="success" path="/jsp/admin/ADM007.jsp"></forward>
+         </action>
+ 		
+        <!-- Contract Template Management -->
+        <action
+            path="/contracttemplatelistview"
+            name="contractTemplateListForm"
+            type="com.osp.npo.app.action.ContractTemplateListAction"
+            input="/jsp/admin/ADM010.jsp"
+            validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/admin/ADM010.jsp"/>
+        </action>
+        
+       
+         <action
+            path="/changeContractTemplateStatusList"
+            name="contractTemplateListForm"
+            type="com.osp.npo.app.action.ContractTemplateListAction"
+            input="/jsp/admin/ADM010.jsp"
+            validate="false"
+            scope="request"
+            parameter="changeStatusList">
+            <forward name="success" path="/jsp/admin/ADM010.jsp"/>
+            <forward name="failure" path="/jsp/admin/ADM010.jsp"/>
+        </action>
+        
+        <action
+            path="/contracttemplatelistsearch"
+            name="contractTemplateListForm"
+            type="com.osp.npo.app.action.ContractTemplateListAction"
+            input="/jsp/admin/ADM010.jsp"
+            validate="false"
+            scope="request"
+            parameter="search">
+            <forward name="success" path="/jsp/admin/ADM010.jsp"/>
+        </action>
+        <action
+            path="/contracttemplatelistpaging"
+            name="contractTemplateListForm"
+            type="com.osp.npo.app.action.ContractTemplateListAction"
+            input="/jsp/admin/ADM010.jsp"
+            validate="false"
+            scope="request"
+            parameter="paging">
+            <forward name="success" path="/jsp/admin/ADM010.jsp"/>
+        </action>
+        <action
+            path="/contracttemplatelistselect"
+            name="contractTemplateListForm"
+            type="com.osp.npo.app.action.ContractTemplateListAction"
+            input="/jsp/admin/ADM010.jsp"
+            validate="false"
+            scope="request"
+            parameter="select">
+            <forward name="success" path="/contracttemplateeditview.do"/>
+            <forward name="failure" path="/contracttemplatelistpaging.do"/>
+        </action>
+        <action
+            path="/contracttemplatelistdownload"
+            name="contractTemplateListForm"
+            type="com.osp.npo.app.action.ContractTemplateListAction"
+            input="/jsp/admin/ADM010.jsp"
+            validate="false"
+            scope="request"
+            parameter="download">
+            <forward name="success" path="/jsp/admin/ADM010.jsp"/>
+        </action>
+        <action
+            path="/contracttemplatelistback"
+            name="contractTemplateListForm"
+            type="com.osp.npo.app.action.ContractTemplateListAction"
+            input="/jsp/admin/ADM010.jsp"
+            validate="false"
+            scope="request"
+            parameter="back">
+            <forward name="success" path="/jsp/admin/ADM010.jsp"/>
+        </action>
+
+        <!-- Contract Template Regist Management -->
+        <action
+            path="/contracttemplateregistview"
+            name="contractTemplateRegistForm"
+            type="com.osp.npo.app.action.ContractTemplateRegistAction"
+            input="/jsp/admin/ADM011.jsp"
+            validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/admin/ADM011.jsp"/>
+        </action>
+        <action
+            path="/contracttemplateregistsave"
+            name="contractTemplateRegistForm"
+            type="com.osp.npo.app.action.ContractTemplateRegistAction"
+            input="/jsp/admin/ADM011.jsp"
+            validate="true"
+            scope="request"
+            parameter="save">
+            <forward name="success" path="/jsp/admin/ADM011.jsp"/>
+            <forward name="failure" path="/jsp/admin/ADM011.jsp"/>
+        </action>
+
+        <!-- Contract Template Edit Management -->
+        <action
+            path="/contracttemplateeditview"
+            name="contractTemplateEditForm"
+            type="com.osp.npo.app.action.ContractTemplateEditAction"
+            input="/jsp/admin/ADM012.jsp"
+            validate="false"
+            scope="request"
+            parameter="view">
+            <forward name="success" path="/jsp/admin/ADM012.jsp"/>
+        </action>
+        <action
+            path="/contracttemplateeditsave"
+            name="contractTemplateEditForm"
+            type="com.osp.npo.app.action.ContractTemplateEditAction"
+            input="/jsp/admin/ADM012.jsp"
+            validate="true"
+            scope="request"
+            parameter="save">
+            <forward name="success" path="/contracttemplateeditview.do"/>
+            <forward name="failure" path="/jsp/admin/ADM012.jsp"/>
+        </action>
+        <action
+            path="/contracttemplateeditremovefile"
+            name="contractTemplateEditForm"
+            type="com.osp.npo.app.action.ContractTemplateEditAction"
+            input="/jsp/admin/ADM012.jsp"
+            validate="true"
+            scope="request"
+            parameter="removeFile">
+            <forward name="success" path="/jsp/admin/ADM012.jsp"/>
+            <forward name="failure" path="/jsp/admin/ADM012.jsp"/>
+        </action>
+        <action
+            path="/contracttemplateeditdownloadfile"
+            name="contractTemplateEditForm"
+            type="com.osp.npo.app.action.ContractTemplateEditAction"
+            input="/jsp/admin/ADM012.jsp"
+            validate="true"
+            scope="request"
+            parameter="download">
+            <forward name="success" path="/jsp/admin/ADM012.jsp"/>
+        </action>
+        <action
+            path="/contracttemplateeditdel"
+            name="contractTemplateEditForm"
+            type="com.osp.npo.app.action.ContractTemplateEditAction"
+            input="/jsp/admin/ADM012.jsp"
+            validate="false"
+            scope="request"
+            parameter="del">
+            <forward name="success" path="/contracttemplatelistback.do"/>
+            <forward name="failure" path="/jsp/admin/ADM012.jsp"/>
+        </action>
+
+        <action
+            path="/systemconfigview"
+            name="systemConfigForm"
+            type="com.osp.npo.app.action.SystemConfigAction"
+            parameter="view"
+            validate="false"
+            scope="request">
+            <forward name="success" path="/jsp/admin/ADM018.jsp"></forward>
+        </action>
+
+        <action
+            path="/systemconfigupdate"
+            name="systemConfigForm"
+            type="com.osp.npo.app.action.SystemConfigAction"
+            parameter="update"
+            validate="true"
+            input="/jsp/admin/ADM018.jsp"
+            scope="request">
+            <forward name="success" path="/logout.do" />
+        </action>
+        
+        <action
+            path="/synchronizeall"
+            name="systemConfigForm"
+            type="com.osp.npo.app.action.SystemConfigAction"
+            parameter="synchronizeAll"
+            validate="false"
+            input="/jsp/admin/ADM018.jsp"
+            scope="request">
+            <forward name="success" path="/systemconfigview.do"/>
+        </action>
+        
+        <action
+            path="/systemconfigcreateindex"
+            name="systemConfigForm"
+            type="com.osp.npo.app.action.SystemConfigAction"
+            parameter="createIndex"
+            validate="false"
+            input="/jsp/admin/ADM018.jsp"
+            scope="request">
+            <forward name="success" path="/systemconfigview.do"/>
+        </action>
+        
+         <action
+            path="/systemresetnumber"
+            name="systemConfigForm"
+            type="com.osp.npo.app.action.SystemConfigAction"
+            parameter="resetNumber"
+            validate="false"
+            input="/jsp/admin/ADM018.jsp"
+            scope="request">
+            <forward name="success" path="/systemconfigview.do"/>
+        </action>
+        
+        <action
+            path="/systemconfigcreateindex2"
+            name="systemConfigForm"
+            type="com.osp.npo.app.action.SystemConfigAction"
+            parameter="createIndex2"
+            validate="false"
+            input="/jsp/admin/ADM018.jsp"
+            scope="request">
+            <forward name="success" path="/systemconfigview.do"/>
+        </action>
+        
+        <action
+            path="/synchronizetoserver"
+            name="systemConfigForm"
+            type="com.osp.npo.app.action.SystemConfigAction"
+            parameter="synchronizeToServer"
+            validate="false"
+            input="/jsp/admin/ADM018.jsp"
+            scope="request">
+            <forward name="success" path="/jsp/admin/ADM018.jsp"/>
+        </action>
+        
+        <action
+            path="/accesshistorylist"
+            name="accessHistoryForm"
+            type="com.osp.npo.app.action.AccessHistoryAction"
+            parameter="view"
+            validate="false"
+            scope="request">
+            <forward name="success" path="/jsp/admin/ADM024.jsp"/>
+        </action>
+        
+         <action
+            path="/accesshistorylistpaging"
+            name="accessHistoryForm"
+            type="com.osp.npo.app.action.AccessHistoryAction"
+            parameter="paging"
+            validate="false"
+            scope="request">
+            <forward name="success" path="/jsp/admin/ADM024.jsp"/>
+        </action>
+        
+        <action
+            path="/accesshistorysearch"
+            name="accessHistoryForm"
+            type="com.osp.npo.app.action.AccessHistoryAction"
+            input="/jsp/admin/ADM024.jsp" validate="true"
+            parameter="search">
+            <forward name="success" path="/jsp/admin/ADM024.jsp"/>
+        </action>
+        
+    </action-mappings>
+
+</struts-config>

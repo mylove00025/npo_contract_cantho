@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>
+        <form-bean name="loginForm" type="com.osp.npo.app.form.LoginForm"/>
+        <form-bean name="userProfileForm" type="com.osp.npo.app.form.UserProfileForm"></form-bean>
+        <form-bean name="homeForm" type="com.osp.npo.app.form.HomeForm"></form-bean>
+    </form-beans>
+
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>
+		<!-- <exception type="java.lang.Exception" key="err_system_error" path="/jsp/common/common_error.jsp"/> -->
+    </global-exceptions>
+
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+        <forward name="nologin" path="/jsp/login/login.jsp"/>
+        <forward name="commonerror" path="/jsp/common/common_error.jsp"/>
+        <forward name="systemerror" path="/jsp/common/system_error.jsp"/>
+        <forward name="demo" path="/jsp/common/demo.jsp"/>
+        <forward name="trial" path="/jsp/common/trial.jsp"/>
+    </global-forwards>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+            <!-- Default "Welcome" action -->
+            <!-- Forwards to Welcome.jsp -->
+        <action
+            path="/index"
+            forward="/jsp/login/login.jsp"/>
+
+        <!-- login -->
+        <action
+            path="/login"
+            name="loginForm"
+            type="com.osp.npo.app.action.LoginAction" input="/jsp/login/login.jsp" validate="true" parameter="login">
+            <forward name="success" path="/home.do" redirect="true"/>
+        </action>
+
+        <!-- logout -->
+        <action
+            path="/logout"
+            name="loginForm"
+            type="com.osp.npo.app.action.LoginAction" input="/jsp/login/login.jsp" validate="false" parameter="logout">
+            <forward name="success" path="/jsp/login/login.jsp"></forward>
+        </action>
+
+        <!-- home view -->
+        <action
+            path="/home"
+            type="com.osp.npo.app.action.HomeAction"
+            name="homeForm"
+            validate="false"
+            parameter="view">
+            <forward name="success" path="/jsp/common/COM003.jsp"/>
+        </action>
+
+        <action
+            path="/downloadTemplate"
+            name="homeForm"
+            type="com.osp.npo.app.action.HomeAction" parameter="downloadTemplate">
+        </action>
+
+        <!-- modify user information -->
+        <action path="/userprofile" type="com.osp.npo.app.action.UserProfileAction"
+            name="userProfileForm"
+            parameter="view"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/common/COM004.jsp"></forward>
+        </action>
+
+        <action path="/userprofileupdate" type="com.osp.npo.app.action.UserProfileAction"
+            name="userProfileForm"
+            parameter="update"
+            scope="request"
+            validate="true"
+            input="/jsp/common/COM004.jsp" >
+            <forward name="success" path="/userprofile.do"></forward>
+        </action>
+
+        <action
+            path="/contact"
+            forward="/jsp/common/COM006.jsp"/>
+            
+    </action-mappings>
+
+
+
+<!-- ======================================== Message Resources Definitions -->
+
+  <message-resources parameter="resources.systemMessage"/>
+
+
+<!-- =============================================== Plug Ins Configuration -->
+  <!--
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <set-property property="definitions-config"
+                       value="/WEB-INF/tiles-defs.xml" />
+      <set-property property="moduleAware" value="true" />
+    </plug-in>
+  -->
+
+
+  <!-- =================================================== Validator plugin -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/org/apache/struts/validator/validator-rules.xml,
+               /WEB-INF/validation.xml,
+               /WEB-INF/validation-admin.xml,
+               /WEB-INF/validation-prevent.xml,
+               /WEB-INF/validation-contract.xml"/>
+
+  </plug-in>
+  <plug-in className="com.osp.npo.app.plugin.InitSystemPlugin">
+    <set-property property="init.time" value="1401031892726"/>
+    
+    <!-- Copyright -->
+    <set-property property="copyright.customer.id" value="MB"/>
+    <set-property property="copyright.key" value="A4Baw46B267CnoyUN0yInKDO6"/>
+  </plug-in>
+
+</struts-config>
+

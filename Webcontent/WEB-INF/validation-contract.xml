@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+
+<!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+
+    <formset>
+		<form name="contractForm">
+		    <field property="contractTemplateId" depends="required">
+                <msg name="required" key="err_not_input_data" />
+                <arg name="required" key="item_contract_template_name" resource="true" position="0" />
+            </field>
+		    
+            <field property="contractNumber" depends="required,maxlength">
+                <msg name="required" key="err_not_input_data" />
+                <arg name="required" key="item_number_contract" resource="true" position="0" />
+                
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_number_contract" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>20</var-value>
+                </var>
+            </field>
+            
+            <field property="contractValue" depends="maxlength,mask">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_contract_value" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>15</var-value>
+                </var>                
+                <msg name="mask" key="err_not_regular" />
+                <arg name="mask" key="item_contract_value" resource="true" position="0" />
+                <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{1,3}(\.?\d{3})*$</var-value>
+                </var>
+            </field>
+            
+            <field property="notaryDate" depends="required">
+                <msg name="required" key="err_not_input_data" />
+                <arg name="required" key="item_notary_date" resource="true" position="0" />                
+            </field>
+            
+            <field property="notaryPlace" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_notary_place" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>
+            </field>
+            
+            <field property="costTt91" depends="maxlength,mask">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_cost_tt91" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>15</var-value>
+                </var>                
+                <msg name="mask" key="err_not_regular" />
+                <arg name="mask" key="item_cost_tt91" resource="true" position="0" />
+                <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{1,3}(\.?\d{3})*$</var-value>
+                </var>
+            </field>
+            
+            <field property="costDraft" depends="maxlength,mask">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_cost_draft" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>15</var-value>
+                </var>
+                <msg name="mask" key="err_not_regular" />
+                <arg name="mask" key="item_cost_draft" resource="true" position="0" />
+                <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{1,3}(\.?\d{3})*$</var-value>
+                </var>
+            </field>
+            
+            <field property="costNotaryOutsite" depends="maxlength,mask">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_cost_notary_outsite" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>15</var-value>
+                </var>
+                <msg name="mask" key="err_not_regular" />
+                <arg name="mask" key="item_cost_notary_outsite" resource="true" position="0" />
+                <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{1,3}(\.?\d{3})*$</var-value>
+                </var>
+            </field>
+            
+            <field property="costOtherDetermine" depends="maxlength,mask">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_cost_other_determine" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>15</var-value>
+                </var>
+                <msg name="mask" key="err_not_regular" />
+                <arg name="mask" key="item_cost_other_determine" resource="true" position="0" />
+                <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{1,3}(\.?\d{3})*$</var-value>
+                </var>
+            </field>
+            
+            <field property="costTotal" depends="maxlength,mask">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_cost_total" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>15</var-value>
+                </var>
+                <msg name="mask" key="err_not_regular" />
+                <arg name="mask" key="item_cost_total" resource="true" position="0" />
+                <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{1,3}(\.?\d{3})*$</var-value>
+                </var>
+            </field>
+            
+            <field property="crediterName" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_crediter_name" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>50</var-value>
+                </var>                
+            </field>
+            
+            <field property="bankServiceFee" depends="maxlength,mask">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_bank_service_fee" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>20</var-value>
+                </var>
+                <msg name="mask" key="err_not_regular" />
+                <arg name="mask" key="item_bank_service_fee" resource="true" position="0" />
+                <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{1,3}(\.?\d{3})*$</var-value>
+                </var>
+            </field>
+            
+            <field property="originalStorePlace" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_original_store_place" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>                
+            </field>
+            
+            <field property="numberCopyOfContract" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_number_copy_of_contract" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>50</var-value>
+                </var>                
+            </field>
+            
+            <field property="numberOfPage" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_number_of_page" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>50</var-value>
+                </var>                
+            </field>
+            
+            <field property="landAddress" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_address" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>                
+            </field>
+            
+            <field property="landCertificate" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_code" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>                
+            </field>
+            
+            <field property="landIssuePlace" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_issue_place" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>100</var-value>
+                </var>                
+            </field>
+            
+            <field property="landNumber" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_number" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>20</var-value>
+                </var>                
+            </field>
+            
+            <field property="landArea" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_area" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>20</var-value>
+                </var>                
+            </field>
+            
+            <field property="landPrivateArea" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_private_area" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>20</var-value>
+                </var>                
+            </field>
+            
+            <field property="landPublicArea" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_public_area" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>20</var-value>
+                </var>                
+            </field>
+            
+            <field property="landUsePurpose" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_use_purpose" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>100</var-value>
+                </var>                
+            </field>
+            
+            <field property="landUsePeriod" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_use_period" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>100</var-value>
+                </var>                
+            </field>
+            
+            <field property="landUseOrigin" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_use_origin" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>                
+            </field>
+            
+            <field property="landAssociateProperty" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_land_associate_property" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>                
+            </field>
+            
+            <field property="carLicenseNumber" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_vehicle_code" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>                
+            </field>
+            
+            <field property="carRegistNumber" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_regist_number" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>200</var-value>
+                </var>                
+            </field>
+            
+            <field property="carIssuePlace" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_issue_place" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>100</var-value>
+                </var>                
+            </field>
+            
+            <field property="carFrameNumber" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_frame_number" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>50</var-value>
+                </var>                
+            </field>
+            
+            <field property="carMachineNumber" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_machine_number" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>50</var-value>
+                </var>                
+            </field>
+            
+            <field property="ownerInfo" depends="maxlength">
+                <msg name="maxlength" key="err_max_length" />
+                <arg name="maxlength" key="item_owner_info" resource="true" position="0" />
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
+                <var>
+                  <var-name>maxlength</var-name>
+                  <var-value>500</var-value>
+                </var>                
+            </field>
+            
+		</form>
+        
+    </formset>
+
+
+
+</form-validation>
